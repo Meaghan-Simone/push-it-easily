@@ -1,0 +1,83 @@
+﻿@model IEnumerable<EventEase.Models.Venue>
+@{
+    ViewData["Title"] = "Venue";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Booking Website</title>
+    <script src="https://kit.fontawesome.com/2802d376d0.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="~/css/venues.css">
+</head>
+<body>
+    <div class="menu-icon" onclick="toggleSidebar()">
+        <i class="fa-solid fa-bars"></i>
+    </div>
+
+    <div class="wrapper">
+        <div class="sidebar">
+            <h2>EVENT</h2>
+            <ul>
+                <!--(W3Schools.com, n.d.-e)-->
+                <li><a asp-controller="Home" asp-action="Index">HOME</a></li>
+                <li><a asp-controller="Venue" asp-action="Index">VENUES</a></li>
+                <li><a asp-controller="Event" asp-action="Index">EVENT</a></li>
+                <li><a asp-controller="Book" asp-action="Index">BOOK</a></li>
+              
+            </ul>
+        </div>
+
+        <div class="main_content">
+            <div class="welcome-section">
+                <div class="welcome-text">
+                    <h2>VENUE</h2>
+                    <p>Please fill out and select an available date.</p>
+                </div>
+
+                <div class="venues-section">
+                    <h2 class="text-center">VENUES AVAILABLE</h2>
+                    <a asp-action="Create" class="btn btn-primary mb-3">Add New Venue</a>
+                    @if (Model != null && Model.Any())
+                    {
+                        <div class="venues-container">
+                            @foreach (var venue in Model)
+                            {
+                                <div class="venue-card">
+                                    <h3>@venue.Name</h3>
+                                    <p><strong>Location:</strong> @venue.Location</p>
+                                    <p><strong>Capacity:</strong> @venue.Capacity</p>
+                                    <p><strong>Description:</strong> @venue.Description</p>
+
+
+                                    @if (!string.IsNullOrEmpty(venue.ImageUrl))
+                                    {
+                                        <img src="@venue.ImageUrl" alt="@venue.Name" class="venue-img" />
+                                    }
+                                    <div class="venue-actions">
+                                        <a asp-action="Edit" asp-route-id="@venue.VenueId" class="btn btn-warning">Edit</a>
+                                        <a asp-action="Delete" asp-route-id="@venue.VenueId" class="btn btn-danger">Delete</a>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    }
+                    else
+                    {
+                        <p class="text-center">No venues available.</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            document.querySelector(".sidebar").classList.toggle("active");
+            document.querySelector(".venues-section").classList.toggle("shifted");
+        }
+    </script>
+</body>
+</html>

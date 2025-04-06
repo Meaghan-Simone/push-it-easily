@@ -1,0 +1,81 @@
+﻿@model IEnumerable<EventEase.Models.Booking>
+
+@{
+    ViewData["Title"] = "Book";
+}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Booking Website</title>
+    <script src="https://kit.fontawesome.com/2802d376d0.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="~/css/book.css">  <!-- Add your custom CSS file here -->
+</head>
+<body>
+    <div class="menu-icon" onclick="toggleSidebar()">
+        <i class="fa-solid fa-bars"></i>
+    </div>
+
+    <div class="wrapper">
+        <div class="sidebar">
+            <h2>EVENT</h2>
+            <ul>
+                <li><a asp-controller="Home" asp-action="Index">HOME</a></li>
+                <li><a asp-controller="Venue" asp-action="Index">VENUES</a></li>
+                <li><a asp-controller="Event" asp-action="Index">EVENT</a></li>
+                <li><a asp-controller="Book" asp-action="Index">BOOK</a></li>
+                <li><a asp-controller="Home" asp-action="Contact">CONTACT</a></li>
+            </ul>
+        </div>
+
+        <div class="main_content">
+            <div class="welcome-section">
+                <div class="welcome-text">
+                    <h2>Bookings</h2>
+                    <p>Here you can view all the bookings made by customers.</p>
+                </div>
+
+                <div class="bookings-section">
+                    <h2 class="text-center">All Bookings</h2>
+                    <a asp-action="Create" class="btn btn-primary mb-3">Add New Booking</a>
+                    @if (Model != null && Model.Any())
+                    {
+                        <!--(W3Schools.com, n.d.-e)-->
+                        <div class="bookings-container">
+                            @foreach (var booking in Model){
+                            
+                                <div class="booking-card">
+                                    <h3>@booking.BookerName</h3>
+                                    <p><strong>Email:</strong> @booking.BookerEmail</p>
+                                    <p><strong>Booking Date:</strong> @booking.BookingDate.ToString("d")</p>
+                                    <p><strong>Venue:</strong> @booking.Venue.Name</p>  <!-- Adjust to display related venue -->
+                                    <p><strong>Event:</strong> @booking.Event.EventName</p>  <!-- Adjust to display related event -->
+                                    <div class="booking-actions">
+                                        <a asp-action="Edit" asp-route-id="@booking.BookingId" class="btn btn-warning">Edit</a>
+                                        <a asp-action="Delete" asp-route-id="@booking.BookingId" class="btn btn-danger">Delete</a>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    }
+                    else
+                    {
+                        <p class="text-center">No bookings available.</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            document.querySelector(".sidebar").classList.toggle("active");
+            document.querySelector(".bookings-section").classList.toggle("shifted");
+        }
+    </script>
+</body>
+</html>

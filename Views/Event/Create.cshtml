@@ -1,0 +1,80 @@
+﻿@model EventEase.Models.Event
+
+@{
+    ViewData["Title"] = "Create Event";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Event</title>
+    <script src="https://kit.fontawesome.com/2802d376d0.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="~/css/event.css">
+</head>
+<body>
+    <div class="menu-icon" onclick="toggleSidebar()">
+        <i class="fa-solid fa-bars"></i>
+    </div>
+
+    <div class="wrapper">
+        <!-- Sidebar (W3Schools.com, n.d.-d)-->
+        <div class="sidebar">
+            <h2>EVENT EASE</h2>
+            <ul>
+                <li><a asp-controller="Home" asp-action="Index">HOME</a></li>
+                <li><a asp-controller="Venue" asp-action="Index">VENUES</a></li>
+                <li><a asp-controller="Event" asp-action="Index">EVENT</a></li>
+                <li><a asp-controller="Book" asp-action="Index">BOOK</a></li>
+               
+            </ul>
+        </div>
+
+       
+        <div class="create-container">
+            <h2>Create Event</h2>
+
+            <form asp-action="Create" method="post" class="form">
+                <!-- Event Name --><!--(W3Schools.com, n.d.-e)-->
+                <div class="form-group">
+                    <label asp-for="EventName"></label>
+                    <input asp-for="EventName" class="form-control" />
+                    <span asp-validation-for="EventName" class="text-danger"></span>
+                </div>
+
+                <!-- Event Date -->
+                <div class="form-group">
+                    <label asp-for="EventDate"></label>
+                    <input asp-for="EventDate" class="form-control" type="date" />
+                    <span asp-validation-for="EventDate" class="text-danger"></span>
+                </div>
+
+                <!-- Event Description -->
+                <div class="form-group">
+                    <label asp-for="EventDescription"></label>
+                    <textarea asp-for="EventDescription" class="form-control" rows="4"></textarea>
+                    <span asp-validation-for="EventDescription" class="text-danger"></span>
+                </div>
+
+                <!-- Venue Dropdown(W3Schools.com, n.d.-d) -->
+                <div class="form-group">
+                    <label asp-for="VenueId"></label>
+                    <select asp-for="VenueId" class="form-control" asp-items="ViewBag.Venues">
+                        <option value="">-- Select Venue --</option>
+                    </select>
+                    <span asp-validation-for="VenueId" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Save Event</button>
+            </form>
+        </div>
+    </div>
+    <!--(W3Schools.com, n.d.-e)-->
+    <script>
+        function toggleSidebar() {
+            document.querySelector(".sidebar").classList.toggle("active");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Booking Website</title>
+    <script src="https://kit.fontawesome.com/2802d376d0.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="~/css/site.css">
+</head>
+<body>
+    <div class="menu-icon" onclick="toggleSidebar()">
+        <i class="fa-solid fa-bars"></i>
+    </div>
+
+    <div class="wrapper">
+        <div class="sidebar">
+            <h2>EVENT EASE</h2>
+            <ul>
+
+                <!--(W3Schools.com, n.d.-e)-->
+                <li><a asp-controller="Home" asp-action="Index">HOME</a></li>
+                <li><a asp-controller="Venue" asp-action="Index">VENUES</a></li>
+                <li><a asp-controller="Event" asp-action="Index">EVENT</a></li>
+                <li><a asp-controller="Book" asp-action="Index">BOOK</a></li>
+                
+            </ul>
+        </div>
+
+        <div class="main_content">
+            <div class="welcome-section">
+                <div class="welcome-image">
+                    <img src="~/Images/EvLogo.png" alt="Event Ease Logo"> <!-- Adds Logo image that i created on canva  -->
+                </div>
+                <div class="welcome-text">
+                    <h2>Welcome to Event Ease</h2>
+                    <p>Your one-stop solution for booking, event planning, and venue selection.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+      
+
+    <script>
+        function toggleSidebar() {
+            document.querySelector(".sidebar").classList.toggle("active");
+            document.querySelector(".venues-section").classList.toggle("shifted");
+        }
+    </script>
+</body>
+</html>

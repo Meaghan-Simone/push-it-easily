@@ -1,0 +1,83 @@
+﻿@model EventEase.Models.Booking
+
+@{
+    ViewData["Title"] = "Edit Booking";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Booking</title>
+    <script src="https://kit.fontawesome.com/2802d376d0.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="~/css/book.css">
+</head>
+<body>
+    <div class="menu-icon" onclick="toggleSidebar()">
+        <i class="fa-solid fa-bars"></i>
+    </div>
+
+    <div class="wrapper">
+        <div class="sidebar">
+            <h2>EVENT</h2>
+            <ul>
+                <li><a asp-controller="Home" asp-action="Index">HOME</a></li>
+                <li><a asp-controller="Venue" asp-action="Index">VENUES</a></li>
+                <li><a asp-controller="Event" asp-action="Index">EVENT</a></li>
+                <li><a asp-controller="Book" asp-action="Index">BOOK</a></li>
+                <li><a asp-controller="Home" asp-action="Contact">CONTACT</a></li>
+            </ul>
+        </div>
+
+        <div class="main_content">
+            <h2>Edit Booking</h2>
+            <form method="post" class="form">
+                <div class="form-group">
+                    <!--(W3Schools.com, n.d.-e)-->
+                    <label asp-for="BookingDate" class="control-label"></label>
+                    <input type="date" asp-for="BookingDate" class="form-control" />
+                    <span asp-validation-for="BookingDate" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="BookerName" class="control-label"></label>
+                    <input type="text" asp-for="BookerName" class="form-control" />
+                    <span asp-validation-for="BookerName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="BookerEmail" class="control-label"></label>
+                    <input type="email" asp-for="BookerEmail" class="form-control" />
+                    <span asp-validation-for="BookerEmail" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="VenueId" class="control-label"></label>
+                    <select asp-for="VenueId" class="form-control" asp-items="@(new SelectList(ViewBag.Venues, "VenueId", "Name", Model.VenueId))">
+                        <option value="">-- Select Venue --</option>
+                    </select>
+                    <span asp-validation-for="VenueId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="EventId" class="control-label"></label>
+                    <select asp-for="EventId" class="form-control" asp-items="@(new SelectList(ViewBag.Events, "EventId", "Name", Model.EventId))">
+                        <option value="">-- Select Event --</option>
+                    </select>
+                    <span asp-validation-for="EventId" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            document.querySelector(".sidebar").classList.toggle("active");
+            document.querySelector(".main_content").classList.toggle("shifted");
+        }
+    </script>
+</body>
+</html>

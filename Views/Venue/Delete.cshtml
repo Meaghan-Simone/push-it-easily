@@ -1,0 +1,55 @@
+﻿@model EventEase.Models.Venue
+@{
+    ViewData["Title"] = "Delete Venue";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Venue</title>
+    <script src="https://kit.fontawesome.com/2802d376d0.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="~/css/venues.css">
+</head>
+<body>
+    <div class="menu-icon" onclick="toggleSidebar()">
+        <i class="fa-solid fa-bars"></i>
+    </div>
+
+    <div class="wrapper">
+        <div class="sidebar">
+            <h2>EVENT</h2>
+            <ul>
+                <li><a asp-controller="Home" asp-action="Index">HOME</a></li>
+                <li><a asp-controller="Venue" asp-action="Index">VENUES</a></li>
+                <li><a asp-controller="Event" asp-action="Index">EVENT</a></li>
+                <li><a asp-controller="Book" asp-action="Index">BOOK</a></li>
+              
+            </ul>
+        </div>
+
+        <div class="main_content">
+            <h2 class="text-center">Delete Venue</h2>
+            <p>Are you sure you want to delete this venue?</p>
+            <h3>@Model.Name</h3>
+            <p><strong>Location:</strong> @Model.Location</p>
+            <p><strong>Capacity:</strong> @Model.Capacity</p>
+            <p><strong>Description:</strong> @Model.Description</p>
+            <img src="@Model.ImageUrl" alt="@Model.Name" class="venue-img" />
+            <form asp-action="Delete" method="post">
+                <input type="hidden" asp-for="VenueId" />
+                <button type="submit" class="btn btn-danger">Confirm Delete</button>
+                <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            document.querySelector(".sidebar").classList.toggle("active");
+            document.querySelector(".main_content").classList.toggle("shifted");
+        }
+    </script>
+</body>
+</html>

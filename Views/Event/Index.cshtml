@@ -1,0 +1,83 @@
+﻿
+
+@model IEnumerable<EventEase.Models.Event>
+
+@{
+    ViewData["Title"] = "Event List";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event List</title>
+    <script src="https://kit.fontawesome.com/2802d376d0.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="~/css/event.css">
+</head>
+<body>
+    <div class="menu-icon" onclick="toggleSidebar()">
+        <i class="fa-solid fa-bars"></i>
+    </div>
+
+    <div class="wrapper">
+        <div class="sidebar">
+            <h2>EVENT EASE</h2>
+            <ul>
+                <li><a asp-controller="Home" asp-action="Index">HOME</a></li>
+                <li><a asp-controller="Venue" asp-action="Index">VENUES</a></li>
+                <li><a asp-controller="Event" asp-action="Index">EVENTS</a></li>
+                <li><a asp-controller="Book" asp-action="Index">BOOK</a></li>
+                
+            </ul>
+        </div>
+
+        <div class="main_content">
+            <div class="welcome-section">
+                <div class="welcome-text">
+                    <h2>Events</h2>
+                    <p>Here you can view all the bookings made by customers.</p>
+                </div>
+            </div>
+        </div>
+
+                <div class="event-container">
+                    <h2 class="text-center">Event List</h2>
+                    <div class="text-right mb-3">
+                        <a href="@Url.Action("Create", "Event")" class="btn btn-primary">Create New Event</a>
+                    </div>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Event Name</th>
+                                <th>Event Date</th>
+                                <th>Venue</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var eventItem in Model)
+                            {
+                                <tr>
+                                    <td>@eventItem.EventName</td>
+                                    <td>@eventItem.EventDate.ToString("d")</td>
+                                    <td>@eventItem.Venue.Name</td>
+                                    <td>
+                                        <a href="@Url.Action("Edit", "Event", new { id = eventItem.EventId })" class="btn btn-warning">Edit</a>
+                                        <a href="@Url.Action("Delete", "Event", new { id = eventItem.EventId })" class="btn btn-danger">Delete</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        
+
+    <script>
+        function toggleSidebar() {
+            document.querySelector(".sidebar").classList.toggle("active");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    height: 100vh;
+    background: url("/Images/Blu-back.png") no-repeat center center/cover;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Menu Icon */
+.menu-icon {
+    font-size: 30px;
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 1000;
+}
+
+/* Wrapper */
+.wrapper {
+    display: flex;
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    left: -220px;
+    width: 200px;
+    height: 100%;
+    background-color: #e6e8eb;
+    padding: 30px 0;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    transition: left 0.3s ease-in-out;
+}
+
+    .sidebar.active {
+        left: 0;
+    }
+
+    .sidebar h2 {
+        color: black;
+        text-transform: uppercase;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .sidebar ul li {
+        padding: 15px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+        .sidebar ul li a {
+            color: black;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidebar ul li:hover {
+            background-color: #c1c9d5;
+        }
+
+    .sidebar .social_media {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+    }
+
+        .sidebar .social_media a {
+            display: block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            margin: 0 5px;
+            color: black;
+            background-color: rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+        }
+
+
+.main_content {
+    width: 100%;
+    margin-left: 0;
+    transition: margin-left 0.3s ease-in-out;
+}
+
+.sidebar.active ~ .main_content {
+    margin-left: 200px;
+}
+
+.welcome-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    padding: 20px;
+    gap: 50px;
+    height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 40px;
+}
+
+.event-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 40px auto;
+    margin-top: 300px;
+    height: fit-content;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.create-container {
+    width: 100%;
+    max-width: 700px;
+    margin: 40px auto;
+    margin-top: 100px;
+    height: fit-content;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 20px; /* Increased bottom margin for more space between fields */
+}
+
+/* Style the form inputs (W3Schools.com, n.d.-c)*/
+.form-control {
+    padding: 12px; 
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+/* Styling the buttons */
+.btn-primary {
+    padding: 12px 20px;
+    border-radius: 15px;
+    font-size: 1.1rem;
+    color: red;
+    margin-top: 20px; /* Spaces */
+}
